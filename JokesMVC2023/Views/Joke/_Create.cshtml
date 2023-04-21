@@ -5,16 +5,16 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="JokeQuestion" class="control-label"></label>
+                <label asp-for="JokeQuestion" class="control-label">Joke Question</label>
                 <input asp-for="JokeQuestion" class="form-control" />
                 <span asp-validation-for="JokeQuestion" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="JokeAnswer" class="control-label"></label>
+            <div class="form-group mt-2">
+                <label asp-for="JokeAnswer" class="control-label">Joke Answer</label>
                 <input asp-for="JokeAnswer" class="form-control" />
                 <span asp-validation-for="JokeAnswer" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

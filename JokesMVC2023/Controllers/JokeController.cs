@@ -48,17 +48,31 @@ namespace JokesMVC2023.Controllers
 
         //}
 
+        //// GET: JokeController/Details/5
+        //public ActionResult Details(int id)
+        //{
+        //    if(id == 0)
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+
+        //    var joke = _jokeContext.Jokes.FirstOrDefault(c => c.Id == id);
+
+        //    return joke != null ? View(joke) : RedirectToAction(nameof(Index));
+        //}
+
         // GET: JokeController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public async Task<ActionResult> Details([FromRoute]int id)
         {
-            if(id == 0)
+            if (id == 0)
             {
                 return RedirectToAction(nameof(Index));
             }
 
             var joke = _jokeContext.Jokes.FirstOrDefault(c => c.Id == id);
 
-            return joke != null ? View(joke) : RedirectToAction(nameof(Index));
+            return joke != null ? PartialView("_Details", joke) : RedirectToAction(nameof(Index));
         }
 
         // GET: JokeController/Create

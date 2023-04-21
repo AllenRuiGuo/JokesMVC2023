@@ -24,7 +24,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create Joke</h5>
+                <h5 class="modal-title" id="modalTitle">Create Joke</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="modalBody"></div>
@@ -50,7 +50,16 @@
                 },
                 body: JSON.stringify(id)
             })}
+        $('#createModal').modal('hide')
         }
+
+    async function showDetailsModal(id) {
+        var result = await fetch(`/Joke/Details/${id}`)
+        var htmlResult = await result.text();
+        document.getElementById("modalBody").innerHTML = htmlResult;
+        document.getElementById("modalTitle").innerHTML = "Joke Details";
+        $('#createModal').modal('show')
+    }
 
     function startTimer(){
         setInterval(updateTable, 1000);
@@ -71,6 +80,7 @@
 
         // Set the modal body to the returned html
         document.getElementById("modalBody").innerHTML = htmlResult;
+        document.getElementById("modalTitle").innerHTML = "Create Joke";
 
         var form = document.querySelector("form[action='/Joke/Create']")
 
