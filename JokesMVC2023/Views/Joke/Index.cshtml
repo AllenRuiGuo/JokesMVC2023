@@ -6,15 +6,15 @@
 
 <h1>Index</h1>
 
-<p>
+@*<p>
     <input type="button" class="btn btn-outline-danger" value="Update" onclick="startTimer()" />
-</p>
+</p>*@
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 
-<input type="button" value="Show Modal" class="btn btn-outline-primary" onclick="showCreateModal()" />
+<input type="button" value="Create New Joke" class="btn btn-outline-primary" onclick="showCreateModal()" />
 
 <div id="JokeTableContainer">
     <partial name="_Joketable.cshtml" />
@@ -34,7 +34,8 @@
 
 
 <script>
-    
+    startTimer();
+
     async function deleteConfirm(id){
         if(confirm("Delete Joke with ID: " + id + "?")){
             console.log("Deleted!")
