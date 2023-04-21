@@ -50,7 +50,13 @@
                             <a class="nav-link text-colour" asp-area="" asp-controller="Joke" asp-action="Index">Jokes</a>
                         </li>
                     </ul>
-                    <input type="button" value="Switch Theme" class="btn" id="btnSwitchTheme" onclick="switchTheme()" />
+                    <div class="d-flex justify-content-between">
+                        <div class="form-check form-switch d-flex justify-content-center align-items-center">
+                            <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" onclick="switchTheme()">
+                            <label class="form-check-label ms-2" for="flexSwitchCheckDefault" id="toggleButtonLabel">Dark</label>
+                        </div>
+                        <input type="button" value="Switch Theme" class="btn btn-info ms-2" id="btnSwitchTheme" onclick="switchTheme()" />
+                    </div>
                 </div>
             </div>
         </nav>

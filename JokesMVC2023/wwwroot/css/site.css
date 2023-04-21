@@ -31,8 +31,21 @@ body {
 .text-colour {color: var(--text-colour) !important}
 
 a {
-    color: var(--colour-4)
+    color: #fb8500
 }
 a:link {
-    color: var(--colour-1)
+    color: #fb8500
 }
+
+th {
+    color: var(--text-colour)
+}
+
+td {
+    color: var(--text-colour)
+}
+
+#toggleButtonLabel {
+    color: var(--text-colour)
+}
+
