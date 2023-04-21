@@ -138,8 +138,42 @@ namespace JokesMVC2023.Controllers
         //}
 
 
+        //// GET: JokeController/Edit/5
+        //public ActionResult Edit(int id)
+        //{
+        //    if (id == 0)
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+
+        //    var joke = _jokeContext.Jokes.FirstOrDefault(c => c.Id == id);
+
+        //    return joke != null ? View(joke) : RedirectToAction(nameof(Index));
+        //}
+
+        //// POST: JokeController/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, Joke joke)
+        //{
+        //    if (id != joke.Id)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        _jokeContext.Jokes.Update(joke);
+
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(joke);
+        //}
+
+
         // GET: JokeController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public async Task<ActionResult> Edit([FromRoute]int id)
         {
             if (id == 0)
             {
@@ -148,13 +182,13 @@ namespace JokesMVC2023.Controllers
 
             var joke = _jokeContext.Jokes.FirstOrDefault(c => c.Id == id);
 
-            return joke != null ? View(joke) : RedirectToAction(nameof(Index));
+            return joke != null ? PartialView("_Edit", joke) : RedirectToAction(nameof(Index));
         }
 
         // POST: JokeController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Joke joke)
+        [HttpPut]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit([FromRoute]int id, [FromBody]Joke joke)
         {
             if (id != joke.Id)
             {
@@ -164,12 +198,11 @@ namespace JokesMVC2023.Controllers
             if (ModelState.IsValid)
             {
                 _jokeContext.Jokes.Update(joke);
-
+                _jokeContext.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             return View(joke);
         }
-
 
 
 

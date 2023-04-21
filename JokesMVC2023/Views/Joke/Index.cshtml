@@ -51,7 +51,37 @@
                 body: JSON.stringify(id)
             })}
         $('#createModal').modal('hide')
-        }
+    }
+
+    async function showEditModal(id) {
+        var result = await fetch(`/Joke/Edit/${id}`)
+        var htmlResult = await result.text();
+        document.getElementById("modalBody").innerHTML = htmlResult;
+        document.getElementById("modalTitle").innerHTML = "Edit Joke";
+
+        var form = document.querySelector(`form[action='/Joke/Edit/${id}']`)
+
+        form = addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            let jokeEdited = {
+                Id: id,
+                JokeQuestion: e.target["JokeQuestion"].value,
+                JokeAnswer: e.target["JokeAnswer"].value
+            }
+
+            let result = await fetch(`/Joke/Edit/${id}`, {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(jokeEdited)
+            })
+            $('#createModal').modal('hide')
+        })
+
+        $('#createModal').modal('show')
+    }
 
     async function showDetailsModal(id) {
         var result = await fetch(`/Joke/Details/${id}`)

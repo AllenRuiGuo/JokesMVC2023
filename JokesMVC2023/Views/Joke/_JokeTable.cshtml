@@ -27,6 +27,7 @@
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     <input type="button" class="btn btn-primary" value="Details" onclick="showDetailsModal(@item.Id)" />
+                    <input type="button" class="btn btn-success" value="Edit" onclick="showEditModal(@item.Id)" />
                     <input type="button" class="btn btn-danger" value="Delete" onclick="deleteConfirm(@item.Id)" />
                 </td>
             </tr>
