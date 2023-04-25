@@ -61,7 +61,7 @@
 
         var form = document.querySelector(`form[action='/Joke/Edit/${id}']`)
 
-        form = addEventListener('submit', async (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             let jokeEdited = {
@@ -71,13 +71,16 @@
             }
 
             let result = await fetch(`/Joke/Edit/${id}`, {
-                method: "PUT",
+                method: "POST",
                 headers: {
                     "content-type": "application/json"
                 },
                 body: JSON.stringify(jokeEdited)
             })
+
+            console.log(`Joke ${id} has been updated!`)
             $('#createModal').modal('hide')
+
         })
 
         $('#createModal').modal('show')

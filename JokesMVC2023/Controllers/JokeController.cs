@@ -67,12 +67,12 @@ namespace JokesMVC2023.Controllers
         {
             if (id == 0)
             {
-                return RedirectToAction(nameof(Index));
+                return View();
             }
 
             var joke = _jokeContext.Jokes.FirstOrDefault(c => c.Id == id);
 
-            return joke != null ? PartialView("_Details", joke) : RedirectToAction(nameof(Index));
+            return joke != null ? PartialView("_Details", joke) : View();
         }
 
         // GET: JokeController/Create
@@ -93,7 +93,7 @@ namespace JokesMVC2023.Controllers
                 {
                     _jokeContext.Jokes.Add(new Joke { JokeQuestion = jokeCreate.JokeQuestion, JokeAnswer = jokeCreate.JokeAnswer });
                     _jokeContext.SaveChanges();
-                    return RedirectToAction(nameof(Index));
+                    return View();
                 }
                 else
                 {
@@ -177,16 +177,16 @@ namespace JokesMVC2023.Controllers
         {
             if (id == 0)
             {
-                return RedirectToAction(nameof(Index));
+                return View();
             }
 
             var joke = _jokeContext.Jokes.FirstOrDefault(c => c.Id == id);
 
-            return joke != null ? PartialView("_Edit", joke) : RedirectToAction(nameof(Index));
+            return joke != null ? PartialView("_Edit", joke) : View();
         }
 
         // POST: JokeController/Edit/5
-        [HttpPut]
+        [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult Edit([FromRoute]int id, [FromBody]Joke joke)
         {
@@ -201,7 +201,7 @@ namespace JokesMVC2023.Controllers
                 _jokeContext.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(joke);
+            return PartialView("_Edit",joke);
         }
 
 
@@ -267,11 +267,11 @@ namespace JokesMVC2023.Controllers
                     _jokeContext.SaveChanges();
                     return RedirectToAction(nameof(Index));
                 }
-                return View();
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Index));
             }
         }
     }
